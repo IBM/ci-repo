@@ -1,0 +1,26 @@
+---
+dist: trusty
+cache: pip
+sudo: required
+
+services:
+  - docker
+
+before_install:
+  - sudo apt-get install shellcheck
+  - sudo pip install yamllint
+
+before_script:
+  - "./tests/shellcheck-lint.sh"
+  - "./tests/yaml-lint.sh"
+
+jobs:
+  include:
+    - script: ./scripts/install-swift.sh
+      env:
+        - SWIFT_SNAPSHOT=swift-4.2-DEVELOPMENT-SNAPSHOT-2018-06-21-a
+        - SNAPSHOT_TYPE=swift-4.2-branch
+    - script: ./scripts/install-minikube.sh
+    - install: ./scripts/install-ibmcloud.sh
+      script: ./scripts/bx-auth.sh
+    - script: ./scripts/install-kubectl.sh
