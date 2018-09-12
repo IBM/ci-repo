@@ -24,3 +24,6 @@ jobs:
     - install: ./scripts/install-ibmcloud.sh
       script: ./scripts/bx-auth.sh
     - script: ./scripts/install-kubectl.sh
+    - install: ./scripts/install-nodejs.sh
+      before_script: npm install -g eslint
+      script: ./tests/es-lint.sh
