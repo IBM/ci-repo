@@ -19,6 +19,7 @@ jobs:
         - SWIFT_SNAPSHOT=swift-4.2-DEVELOPMENT-SNAPSHOT-2018-06-21-a
         - SNAPSHOT_TYPE=swift-4.2-branch
     - script: ./scripts/install-minikube.sh
+    - script: ./scripts/install-openwhisk-docker.sh
     - install: ./scripts/install-ibmcloud.sh
       script: ./scripts/bx-auth.sh
     - script: ./scripts/install-kubectl.sh
