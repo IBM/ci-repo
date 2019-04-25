@@ -9,8 +9,13 @@
 # shellcheck disable=SC1090
 source "$(dirname "$0")"/../scripts/resources.sh
 
-BLUEMIX_ORG="Developer Advocacy"
-BLUEMIX_SPACE="dev"
+if [ -z "${BLUEMIX_ORG}" ]; then
+  BLUEMIX_ORG="Developer Advocacy"
+fi
+
+if [ -z "${BLUEMIX_SPACE}" ]; then
+  BLUEMIX_SPACE="dev"
+fi
 
 is_pull_request "$0"
 
