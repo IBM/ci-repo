@@ -35,10 +35,19 @@ git checkout 1c67cef739066f573b864b6f41f694fcae00a86b
 make quick-start
 
 # add system packages
-make add-catalog
-make create-provider-alarms
-make create-provider-kafka
-make create-provider-cloudant
+make add-catalog create-provider-alarms create-provider-kafka create-provider-cloudant
+
+# check providers health
+echo "..."
+echo "Waiting for alarm provider to be up"
+until (curl --silent http://localhost:8081/health > /dev/null); do printf '.'; sleep 5; done
+echo "Alarm package is up"
+echo "Waiting for kafka provider to be up"
+until (curl --silent http://localhost:8082/health > /dev/null); do printf '.'; sleep 5; done
+echo "Kafka/messaging package is up"
+echo "Waiting for cloudant provider to be up"
+until (curl --silent http://localhost:5000/health > /dev/null); do printf '.'; sleep 5; done
+echo "Cloudant package is up"
 
 # move wskprops and wsk binary
 mv "$(pwd)"/.wskprops "${HOME}"/.wskprops
