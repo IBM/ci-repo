@@ -473,7 +473,7 @@ $(addprefix install-package-,$(PACKAGES)):
 .PHONY: $(addprefix start-provider-,$(PACKAGES))
 $(addprefix start-provider-,$(PACKAGES)):
 	$(eval PACKAGE_NAME:= $(shell echo $(@) | cut -b 16-))
-	$(shell cat ~/tmp/openwhisk/providers.env) docker-compose -f docker-compose.yml -f docker-compose.packages.yml --project-name openwhisk up --no-recreate $(PACKAGE_NAME)provider 2>&1 > ~/tmp/openwhisk/docker-provider-compose.log &
+	$(shell cat ~/tmp/openwhisk/providers.env) docker-compose -f docker-compose.yml -f docker-compose.packages.yml --project-name openwhisk up --no-recreate -d $(PACKAGE_NAME)provider 2>&1 > ~/tmp/openwhisk/docker-provider-compose.log
 
 .PHONY: $(addprefix stop-provider-,$(PACKAGES))
 $(addprefix stop-provider-,$(PACKAGES)): setup-providers
