@@ -27,7 +27,7 @@ git clone https://github.com/apache/incubator-openwhisk-devtools
 # overwrite makefile
 # Makefile is a modified makefile to silence zip commands
 cp "$(dirname "$0")"/../Makefile-openwhisk incubator-openwhisk-devtools/docker-compose/Makefile
-pushd incubator-openwhisk-devtools/docker-compose
+pushd incubator-openwhisk-devtools/docker-compose || exit 1
 
 # checkout specific commit
 git checkout 1c67cef739066f573b864b6f41f694fcae00a86b
@@ -52,7 +52,7 @@ echo "Cloudant package is up"
 # move wskprops and wsk binary
 mv "$(pwd)"/.wskprops "${HOME}"/.wskprops
 sudo mv ./openwhisk-src/bin/wsk /usr/local/bin/wsk
-popd
+popd || exit 1
 
 wsk -i list
 wsk -i package list /whisk.system
