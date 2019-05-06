@@ -32,6 +32,9 @@ pushd incubator-openwhisk-devtools/docker-compose || exit 1
 # checkout specific commit
 git checkout 1c67cef739066f573b864b6f41f694fcae00a86b
 
+# remove this line when upstream is updated
+sed -i 's#apache/couchdb:2.1#apache/couchdb:2.3#' docker-compose.yml
+
 make quick-start
 
 # add system packages
