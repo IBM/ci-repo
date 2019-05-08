@@ -30,10 +30,7 @@ cp "$(dirname "$0")"/../Makefile-openwhisk incubator-openwhisk-devtools/docker-c
 pushd incubator-openwhisk-devtools/docker-compose || exit 1
 
 # checkout specific commit
-git checkout 1c67cef739066f573b864b6f41f694fcae00a86b
-
-# remove this line when upstream is updated
-sed -i 's#apache/couchdb:2.1#apache/couchdb:2.3#' docker-compose.yml
+git checkout 1f27b3b2c5ad5dec49591ed0d4edebfeb53653d4
 
 make quick-start
 
